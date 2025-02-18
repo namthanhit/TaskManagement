@@ -5,14 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::where('user_id', Auth::id())->get();
+        $search = $request->input('search');
+
+        $tasks = Task::query()
+            ->when($search, function ($query, $search) {
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%")
+                    ->orWhere('status', 'like', "%{$search}%");
+            })
+            ->get();
+
         return view('tasks.index', compact('tasks'));
     }
+
 
     public function create()
     {
@@ -67,5 +79,16 @@ class TaskController extends Controller
         $task->delete();
 
         return redirect()->route('tasks.index')->with('success', 'Xóa công việc thành công!');
+    }
+
+    public function toggleStatus(Task $task)
+    {
+        $this->authorize('update', $task);
+
+        $newStatus = $task->status === 'Đã hoàn thành' ? 'Chưa hoàn thành' : 'Đã hoàn thành';
+
+        $task->update(['status' => $newStatus]);
+
+        return redirect()->route('tasks.index')->with('success', 'Cập nhật trạng thái công việc thành công!');
     }
 }

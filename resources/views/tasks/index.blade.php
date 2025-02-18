@@ -11,29 +11,68 @@
             <a href="{{ route('tasks.create') }}" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded no-underline">Thêm công việc</a>
         </div>
 
-        <table class="min-w-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden">
+        <!-- Form tìm kiếm -->
+        <form method="GET" action="{{ route('tasks.index') }}" class="mb-4 flex items-center gap-2">
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Tìm kiếm công việc..."
+                class="border border-gray-300 px-4 py-2 rounded w-1/3 bg-white text-black dark:bg-gray-800 dark:text-gray-200">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Tìm</button>
+        </form>
+
+        <table class="min-w-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden table-fixed">
             <thead class="bg-gray-100 light:bg-gray-700">
                 <tr>
-                    <th class="border px-4 py-2">Tiêu đề</th>
-                    <th class="border px-4 py-2">Mô tả</th>
-                    <th class="border px-4 py-2">Ngày hết hạn</th>
-                    <th class="border px-4 py-2">Trạng thái</th>
-                    <th class="border px-4 py-2">Hành động</th>
+                    <th class="border px-4 py-2 w-1/6">Tiêu đề</th>
+                    <th class="border px-4 py-2 w-1/4">Mô tả</th>
+                    <th class="border px-4 py-2 w-1/6">Ngày hết hạn</th>
+                    <th class="border px-4 py-2 w-1/6">Tình trạng hạn</th>
+                    <th class="border px-4 py-2 w-1/6">Trạng thái</th>
+                    <th class="border px-4 py-2 w-1/6">Hành động</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($tasks as $task)
-                <tr class="hover:bg-green-50 dark:hover:bg-green-500">
-                    <td class="border px-4 py-2">{{ $task->title }}</td>
-                    <td class="border px-4 py-2">{{ $task->description }}</td>
-                    <td class="border px-4 py-2">{{ $task->deadline }}</td>
-                    <td class="border px-4 py-2">{{ $task->status }}</td>
-                    <td class="border px-4 py-2 flex gap-2">
+                <tr>
+                    <td class="border px-4 py-2 break-words">{{ $task->title }}</td>
+                    <td class="border px-4 py-2 break-words">{{ $task->description }}</td>
+                    <td class="border px-4 py-2 text-center">{{ $task->deadline }}</td>
+                    <td class="border px-4 py-2 text-center font-bold">
+                        @php
+                        $today = now();
+                        $deadline = \Carbon\Carbon::parse($task->deadline);
+                        $diffInDays = $today->diffInDays($deadline, false);
+
+                        if ($task->status === 'Đã hoàn thành') {
+                        $statusColor = 'text-green-500';
+                        $statusText = 'Đã hoàn thành';
+                        } elseif ($diffInDays < 0) {
+                            $statusColor='text-red-500' ;
+                            $statusText='Quá hạn' ;
+                            } elseif ($diffInDays <=3) {
+                            $statusColor='text-yellow-500' ;
+                            $statusText='Sắp đến hạn' ;
+                            } else {
+                            $statusColor='text-blue-500' ;
+                            $statusText='Chưa đến hạn' ;
+                            }
+                            @endphp
+
+                            <span class="{{ $statusColor }}">{{ $statusText }}</span>
+                    </td>
+                    <td class="border px-4 py-2 text-center">
+                        <form action="{{ route('tasks.toggleStatus', $task->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit"
+                                class="px-3 py-1 rounded {{ $task->status === 'Đã hoàn thành' ? 'bg-green-500 text-white' : 'bg-yellow-500 text-black' }} w-full">
+                                {{ $task->status }}
+                            </button>
+                        </form>
+                    </td>
+                    <td class="border px-4 py-2">
                         <div class="flex space-x-2">
                             <a href="{{ route('tasks.edit', $task) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded no-underline">
                                 Sửa
                             </a>
-
 
                             <form action="{{ route('tasks.destroy', $task) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa không?');">
                                 @csrf
@@ -47,7 +86,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" class="text-center py-4 text-gray-500">Chưa có công việc nào</td>
+                    <td colspan="6" class="text-center py-4 text-gray-500">Chưa có công việc nào</td>
                 </tr>
                 @endforelse
             </tbody>

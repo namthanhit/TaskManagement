@@ -31,6 +31,14 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Set permissions for Laravel storage and cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Trỏ Apache về thư mục public
+RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+
+# Clear cache nếu cần
+RUN php artisan config:clear
+RUN php artisan cache:clear
 
 # Expose port 80 and start Apache
 EXPOSE 80

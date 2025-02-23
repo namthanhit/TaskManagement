@@ -18,14 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\DashboardController;
+
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('tasks', TaskController::class);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

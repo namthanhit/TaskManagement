@@ -5,7 +5,7 @@
     </div>
 
     <!-- Modal hiển thị thông tin sự kiện -->
-    <div id="eventModal" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-60 z-50">
+    <div id="eventModal" class="fixed inset-0 flex items-center justify-center hidden bg-gray-900 bg-opacity-60 z-50">
         <div class="bg-white p-6 rounded-lg shadow-2xl w-[400px] relative">
             <h3 class="text-xl font-bold text-gray-800 mb-3" id="modalTitle"></h3>
             <p class="text-gray-700 mb-2" id="modalDescription"></p>

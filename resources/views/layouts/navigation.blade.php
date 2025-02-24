@@ -6,22 +6,21 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.*')">
+                    <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.*')" class="text-white no-underline hover:text-gray-300">
                         {{ __('Home') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white no-underline hover:text-gray-300">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
-                        {{ __('Calender') }}
+                    <x-nav-link :href="route('calendar')" :active="request()->routeIs('calendar')" class="text-white no-underline hover:text-gray-300">
+                        {{ __('Calendar') }}
                     </x-nav-link>
-
-
                 </div>
 
             </div>
+
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

@@ -24,7 +24,7 @@ Hệ thống quản lý công việc đơn giản sử dụng **Laravel** và **
 
 ### 2️⃣ Clone repository
 ```sh
-git clone https://github.com/your-repo/task-management.git
+git clone https://github.com/namthanhit/TaskManagement.git
 cd task-management
 ```
 
@@ -57,6 +57,7 @@ php artisan migrate --seed
 ### 6️⃣ Build frontend & khởi chạy server
 ```sh
 npm run build
+npm run dev
 php artisan serve
 ```
 Mở trình duyệt và truy cập: [http://127.0.0.1:8000](http://127.0.0.1:8000)
@@ -96,15 +97,5 @@ Mở trình duyệt và truy cập: [http://127.0.0.1:8000](http://127.0.0.1:800
 📂 .env                      # Cấu hình môi trường
 ```
 
----
 
-## 🔥 Một số lỗi thường gặp & cách khắc phục
-
-1️⃣ **Không hiển thị lịch hoặc task?**  
-→ Kiểm tra xem `npm run build` đã chạy thành công chưa.  
-
-2️⃣ **Lỗi database khi chạy migrate?**  
-→ Kiểm tra file `.env` đã cấu hình đúng chưa.  
-
-3️⃣
 

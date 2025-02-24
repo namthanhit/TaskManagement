@@ -22,11 +22,16 @@ Route::get('/', function () {
 
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CalendarController;
+
+
+
 
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('tasks', TaskController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

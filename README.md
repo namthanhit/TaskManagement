@@ -1,66 +1,110 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📝 Task Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Hệ thống quản lý công việc đơn giản sử dụng **Laravel** và **Tailwind CSS**, hỗ trợ quản lý công việc, xem lịch trình và theo dõi trạng thái công việc một cách trực quan.
 
-## About Laravel
+## 🚀 Tính năng chính
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- 👋 **Quản lý công việc:** Tạo, sửa, xóa công việc với mô tả, ngày hết hạn và trạng thái.
+- 🎨 **Giao diện trực quan:** Hiển thị danh sách công việc với màu sắc phân biệt theo trạng thái.
+- 📅 **Trang Lịch:** Hiển thị công việc trên lịch FullCalendar, giúp dễ dàng theo dõi.
+- 📊 **Dashboard:** Thống kê nhanh số lượng công việc theo trạng thái.
+- 🔍 **Tìm kiếm & Lọc:** Hỗ trợ tìm kiếm theo tên công việc và lọc theo trạng thái.
+- 🔒 **Xác thực người dùng:** Sử dụng Laravel Breeze để xử lý đăng nhập & đăng ký.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Cài đặt
 
-## Learning Laravel
+### 1️⃣ Yêu cầu hệ thống
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP `>= 8.1`
+- Composer
+- Node.js & npm
+- MySQL hoặc SQLite
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 2️⃣ Clone repository
+```sh
+git clone https://github.com/your-repo/task-management.git
+cd task-management
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 3️⃣ Cài đặt dependencies
+```sh
+composer install
+npm install
+```
 
-## Laravel Sponsors
+### 4️⃣ Cấu hình môi trường
+```sh
+cp .env.example .env
+php artisan key:generate
+```
+**Cập nhật thông tin kết nối database trong `.env`**  
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 5️⃣ Chạy migration & seed dữ liệu
+```sh
+php artisan migrate --seed
+```
 
-### Premium Partners
+### 6️⃣ Build frontend & khởi chạy server
+```sh
+npm run build
+php artisan serve
+```
+Mở trình duyệt và truy cập: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+## 🎨 Hướng dẫn sử dụng
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### **1. Đăng nhập**
+- Đăng ký tài khoản nếu chưa có.
+- Đăng nhập để bắt đầu sử dụng hệ thống.
 
-## Code of Conduct
+### **2. Quản lý công việc**
+- Nhấn **"Thêm công việc"** để tạo task mới.
+- Nhấn **"Sửa"** để chỉnh sửa task.
+- Nhấn **"Xóa"** để xóa task.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### **3. Sử dụng lịch**
+- Vào mục **"Lịch"** để xem công việc theo ngày.
+- Nhấn vào sự kiện trên lịch để xem chi tiết.
 
-## Security Vulnerabilities
+### **4. Dashboard**
+- Xem thống kê số lượng công việc theo trạng thái.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## ⚙️ Cấu trúc thư mục chính
+```
+💚 task-management
+🗂️ app/Http/Controllers      # Controllers xử lý logic
+🗂️ app/Models                # Mô hình dữ liệu (Eloquent)
+🗂️ database/migrations       # Các file migration database
+🗂️ resources/views           # Blade templates
+🗂️ public                    # Assets (CSS, JS, images)
+🗂️ routes                    # Định tuyến Laravel
+🗂️ resources/js              # Mã nguồn frontend (Vue/Tailwind)
+📂 .env                         # Cấu hình môi trường
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 🔥 Một số lỗi thường gặp & cách khắc phục
+
+1️⃣ **Không hiển thị lịch hoặc task?**  
+→ Kiểm tra xem `npm run build` đã chạy thành công chưa.  
+
+2️⃣ **Lỗi database khi chạy migrate?**  
+→ Kiểm tra file `.env` đã cấu hình đúng chưa.  
+
+3️⃣
+

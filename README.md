@@ -93,7 +93,7 @@ Mở trình duyệt và truy cập: [http://127.0.0.1:8000](http://127.0.0.1:800
 🗂️ public                    # Assets (CSS, JS, images)
 🗂️ routes                    # Định tuyến Laravel
 🗂️ resources/js              # Mã nguồn frontend (Vue/Tailwind)
-📂 .env                         # Cấu hình môi trường
+📂 .env                      # Cấu hình môi trường
 ```
 
 ---

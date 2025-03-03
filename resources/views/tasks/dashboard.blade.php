@@ -48,12 +48,12 @@
 
             <ul id="task-list">
                 @foreach ($recentTasks as $task)
-                    <li class="py-2 border-b last:border-b-0 flex justify-between">
-                        <span class="font-semibold">{{ $task->title }}</span>
-                        <span class="{{ $task->status === 'completed' ? 'text-green-600' : ($task->status === 'overdue' ? 'text-red-600' : 'text-gray-600') }}">
-                            {{ ucfirst($task->status) }}
-                        </span>
-                    </li>
+                <li class="py-2 border-b last:border-b-0 flex justify-between">
+                    <span class="font-semibold">{{ $task->title }}</span>
+                    <span class="{{ $task->status === 'completed' ? 'text-green-600' : ($task->status === 'overdue' ? 'text-red-600' : 'text-gray-600') }}">
+                        {{ ucfirst($task->status) }}
+                    </span>
+                </li>
                 @endforeach
             </ul>
         </div>
@@ -62,7 +62,7 @@
     <!-- Biểu đồ Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             // Biểu đồ
             const taskData = @json($taskCounts);
             const ctx = document.getElementById('taskChart').getContext('2d');
@@ -92,5 +92,9 @@
             });
         });
     </script>
+
+    <footer class="mt-6 bg-gray-100 dark:bg-gray-700 text-center py-4 text-gray-600 dark:text-gray-300">
+        © {{ date('Y') }} Quản lý công việc. All rights reserved.
+    </footer>
 
 </x-app-layout>

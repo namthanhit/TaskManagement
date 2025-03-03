@@ -37,4 +37,9 @@
             </div>
         </form>
     </div>
+
+    <footer class="mt-6 bg-gray-100 dark:bg-gray-700 text-center py-4 text-gray-600 dark:text-gray-300">
+        © {{ date('Y') }} Quản lý công việc. All rights reserved.
+    </footer>
+
 </x-app-layout>

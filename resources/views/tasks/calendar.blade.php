@@ -64,7 +64,7 @@
                     // Hiển thị modal
                     document.getElementById('eventModal').classList.remove('hidden');
                 }
-            });
+            })
 
             calendar.render();
         });
@@ -74,4 +74,6 @@
             document.getElementById('eventModal').classList.add('hidden');
         }
     </script>
+
+    
 </x-app-layout>
